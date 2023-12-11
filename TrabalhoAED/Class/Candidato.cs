@@ -19,9 +19,16 @@ namespace TrabalhoAED.Class
             Codigo = codigo;
         }
 
+        public string nome { get => Nome; }
+
         public int[] GetNotas()
         {
             return Notas.Lista;
+        }
+
+        public int[] GetCodigo()
+        {
+            return Codigo.Mostrar();
         }
 
         public double CalcularMedia()

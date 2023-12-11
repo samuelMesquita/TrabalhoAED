@@ -43,6 +43,34 @@ namespace TrabalhoAED.Class
             candidatos.Inserir(new Candidato(nome, notas, codigos));
         }
 
+        public void VincularCandidatosMaterias()
+        {
+            var candidatosArr = candidatos.Mostrar();
+            var MaioresNotas = candidatosArr.OrderByDescending(x => x.CalcularMedia()).ThenBy(x => x.GetNotas()[2]).ToList();
+
+            bool aprovado = false;
+
+            foreach (var maiorNota in MaioresNotas)
+            {
+                var cursos = maiorNota.GetCodigo();
+
+                var curso = materias.Where(x => x.Key == cursos[0]).FirstOrDefault();
+
+                if(curso.Value != null)
+                {
+                    aprovado = curso.Value.IncluirCandidato(maiorNota);
+
+                    if (!aprovado)
+                    {
+                        curso = materias.Where(x => x.Key == cursos[1]).FirstOrDefault();
+                        curso.Value.IncluirCandidato(maiorNota);
+                    }
+                }
+            }
+        }
+
+        public IDictionary<int, Materia> GetMaterias() { return materias; }
+
         public int quantidadeCurso
         {
             get => QuantidadeCurso;

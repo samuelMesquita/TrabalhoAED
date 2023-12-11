@@ -19,7 +19,6 @@ namespace TrabalhoAED.Class
 
         public StringBuilder LerRelatorio()
         {
-            StringBuilder relatorio = new StringBuilder();
             FilaDeEspera filaDeEspera = new FilaDeEspera();
             int count = 0;
 
@@ -68,13 +67,39 @@ namespace TrabalhoAED.Class
                     }
                 }
             }
-
+            filaDeEspera.VincularCandidatosMaterias();
+            var relatorio = GerarRelatorio(filaDeEspera);
             return relatorio;
         }
 
-        public StringBuilder GerarRelatorio()
+        public StringBuilder GerarRelatorio(FilaDeEspera filaEspera)
         {
-            return new StringBuilder();
+            StringBuilder relatorio = new StringBuilder();
+
+            var materias = filaEspera.GetMaterias();
+
+            foreach(var materia in materias.Values)
+            {
+                relatorio.AppendLine($"{materia.nome}: {materia.notaDeCorte.ToString("N2")}");
+                relatorio.AppendLine("Selecionados");
+
+                var candidatosSelecionados = materia.GetCandidatoPorStatus("Selecionado");
+
+                foreach (var candidato in candidatosSelecionados.Mostrar())
+                    relatorio.AppendLine($"{candidato.nome}: {candidato.CalcularMedia().ToString("N2")}");
+
+                relatorio.AppendLine("Fila de Espera");
+
+                var candidatosFilaDeEspera = materia.GetCandidatoPorStatus("Fila de Espera");
+
+                foreach (var candidato in candidatosFilaDeEspera.Mostrar())
+                    relatorio.AppendLine($"{candidato.nome}: {candidato.CalcularMedia().ToString("N2")}");
+
+                relatorio.AppendLine();
+                relatorio.AppendLine();
+            }
+
+            return relatorio;
         }
     }
 }
