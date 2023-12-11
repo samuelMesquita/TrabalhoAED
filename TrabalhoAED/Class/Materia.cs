@@ -8,20 +8,12 @@ namespace TrabalhoAED.Class
 {
     public class Materia
     {
-        private int Codigo;
         private string Nome;
         private int Vaga;
 
-        public Materia(int codigo, string nome, int vaga) { 
-            Codigo = codigo;
+        public Materia(string nome, int vaga) { 
             Nome = nome;
             Vaga = vaga;
-        }
-
-        public int codigo
-        {
-            get { return Codigo; }
-            set { Codigo = value; }
         }
 
         public string nome

@@ -7,7 +7,9 @@ namespace TrabalhoAED
     {
         static void Main(string[] args)
         {
-            
+            var filaDeEspera = new RelatorioFila(@"C:\Users\samuel mesquita\Desktop\Trabalho\Trabalho.txt");
+
+            filaDeEspera.LerRelatorio();
         }
     }
 }

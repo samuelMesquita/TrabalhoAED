@@ -12,8 +12,8 @@ namespace TrabalhoAED.Class
     {
         private string Nome;
         private ListaSimples<int> Notas;
-        private ListaSimples<int> Codigo;
-        public Candidato(string nome, ListaSimples<int> notas, ListaSimples<int> codigo) { 
+        private FilaFlexivel<int> Codigo;
+        public Candidato(string nome, ListaSimples<int> notas, FilaFlexivel<int> codigo) { 
             Nome = nome;
             Notas = notas;
             Codigo = codigo;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoAED.Class.Fila
+namespace TrabalhoAED.Class
 {
     public class Celula<T>
     {
@@ -12,7 +12,7 @@ namespace TrabalhoAED.Class.Fila
         private Celula<T> Prox;
         public Celula()
         {
-            Elemento = default(T);
+            Elemento = default;
             Prox = null;
         }
 
@@ -30,7 +30,7 @@ namespace TrabalhoAED.Class.Fila
 
         public Celula<T> prox
         {
-            get { return  Prox; }
+            get { return Prox; }
             set { Prox = value; }
         }
     }
